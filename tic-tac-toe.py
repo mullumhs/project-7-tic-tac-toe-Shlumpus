@@ -1,25 +1,41 @@
-def main():
-    board = initialiseBoard()
-    displayBoard(board)
-    player = 1
-    
-def initialiseBoard():
-    board = []
-    for _ in range(6):
-        row = []
-        for _ in range(7):
-            row.append('-')
+board = []
+
+def initialiseBoard(): 
+
+    for i in range(7):
+        row = ['-', '-', '-', '-', '-', '-', '-', '-', '-']
         board.append(row)
-    return board
-    
-def displayBoard(board):
-    for row in board:
-        for cell in row:
-            print(cell, end=' ')
+
+def displayBoard():
+    for i in board:
+        for digit in i:
+            print(digit, end=' ')
         print()
-    print()
 
-if __name__ == "__main__":
-    main()
+initialiseBoard()
+displayBoard()
+player = 1
 
-displayBoard(board)
+
+while True:
+    
+    token = 'X'
+    if player % 2 == 0:
+        token = 'O'
+    player += 1
+
+    choice = int(input("Choose your column: "))
+    choice -= choice
+
+    for i in range(6, -1, -1):
+        if i == '-':
+            board[i][choice]
+    
+    displayBoard()
+
+
+
+
+
+
+
