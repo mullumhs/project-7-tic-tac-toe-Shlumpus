@@ -25,11 +25,10 @@ while True:
     player += 1
 
     choice = int(input("Choose your column: "))
-    choice -= choice
+    choice -= 1
 
     for i in range(6, -1, -1):
-        if i == '-':
-            board[i][choice]
+        board[6][choice]
     
     displayBoard()
 
