@@ -21,16 +21,26 @@ displayBoard()
 player = 1
 
 def checkHorizontal(board):
-    for row in range:
-        for col in range(4):
-            if (board[row][col] == board[row][col + 1] == board[row][col + 2] == board[row][col + 3] != digit):
+    for row in range(6):
+        for col in range(8):
+            if (board[row][col] == board[row][col + 1] == board[row][col + 2] == board[row][col + 3] and board[row][col] == 'X'):
+                print("Player 1 WINS")
+                return True
+            if (board[row][col] == board[row][col + 1] == board[row][col + 2] == board[row][col + 3] and board[row][col] == 'O'):
+                print("Player 2 WINS")
                 return True
     return False
 
-def checkDiagonal(board):
-    for row in range(3):
-        for col in range(4):
-            
+def checkVertical(board):
+    for col in range(8):
+        for row in range(4):
+            if (board[row][col] == board[row + 1][col] == board[row + 2][col] == board[row + 3][col] and board[row][col] == 'X'):
+                print("Player 1 WINS")
+                return True
+            if (board[row][col] == board[row + 1][col] == board[row + 2][col] == board[row + 3][col] and board[row][col] == 'O'):
+                print("Player 2 WINS")
+                return True
+    return False
 
 while True:
     digit = '-'
@@ -46,6 +56,11 @@ while True:
         
     choice = int(choice)
     choice -= 1
+
+    board[3][0] == 'X'
+    board[3][1] == 'X'
+    board[3][2] == 'X'
+    board[3][3] == 'X'
 
     for i in range(6, -1, -1):
         if board[i][choice] == digit:
