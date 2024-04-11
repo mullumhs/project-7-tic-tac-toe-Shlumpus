@@ -53,6 +53,18 @@ def checkDiagonal(board):
                     return True
     return False
 
+def checkDiagonal(board):
+    for row in range(4):
+        for col in range(6):
+            if (board[row][col] == board[row + 1][col + 1] == board[row + 2][col + 2] == board[row + 3][col + 3] != digit):
+                if token == 'X':
+                    print("Player 1 WINS")
+                    return True
+                elif token == 'O':
+                    print("Player 2 WINS")
+                    return True
+    return False
+
 while True:
     digit = '-'
 
@@ -78,8 +90,8 @@ while True:
 
     
     displayBoard()
-    checkHorizontal(board)
-    checkVertical(board)
+    if (checkHorizontal(board) or checkVertical(board) or checkDiagonal(board)):
+        break
 
 
 
