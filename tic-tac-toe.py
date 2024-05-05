@@ -1,98 +1,98 @@
 board = []
 
-def initialiseBoard(): 
-    print("---CONNECT FOUR---")
+def initialiseBoard():
+    print("---- TIC TAC TOE ----")
     print()
-    for i in range(7):
-        digit = '-'
-        row = [digit, digit, digit, digit, digit, digit, digit, digit, digit, ]
+    for i in range(3):
+        digit = "-"
+        row = [digit, digit, digit]
         board.append(row)
 
 def displayBoard():
-    print("1 2 3 4 5 6 7 8 9")
+    print("   1 2 3")
+    line = 0
     for i in board:
-        for digit in i:
-            print(digit, end=' ')
+        if line == 0:
+            letter = "A"
+            
+        if line == 1:
+            letter = "B"
+
+        if line == 2:
+            letter = "C"
+        line = line + 1
+        print(letter, '|', end= '')
+        for column in i:
+            print(column, end= '|')
         print()
+
+def checkHorizontal():
+    for row in range(2):
+        if (board[row][0] == board[row][1] == board[row][2] and board[row][0] == 'X'):
+            print("Player 1 WINS")
+            return True
+        if (board[row][0] == board[row][1] == board[row][2] and board[row][0] == 'O'):
+            print("Player 2 WINS")
+            return True
+    return False
+
+def checkVertical():
+    for col in range(2):
+        if (board[0][col] == board[1][col] == board[2][col] and board[0][col] == 'X'):
+            print("Player 1 WINS")
+            return True
+        if (board[0][col] == board[1][col] == board[2][col] and board[0][col] == 'O'):
+            print("Player 2 WINS")
+            return True
+    return False
+
+def checkDiagonal():
+    for row in range(2):
+        for col in range(2):
+            if (board[row][col] == board[row + 1][col + 1] == board[row + 2][col + 2] and board[row][col] == 'X'):
+                print("Player 1 WINS")
+                return True
+            if (board[row][col] == board[row + 1][col + 1] == board[row + 2][col + 2] and board[row][col] == 'O'):
+                print("Player 2 WINS")
+                return True
+    return False
+    
 
 initialiseBoard()
 displayBoard()
 player = 1
 
-def checkHorizontal(board):
-    for row in range(7):
-        for col in range(6):
-            if (board[row][col] == board[row][col + 1] == board[row][col + 2] == board[row][col + 3] and board[row][col] == 'X'):
-                print("Player 1 WINS")
-                return True
-            if (board[row][col] == board[row][col + 1] == board[row][col + 2] == board[row][col + 3] and board[row][col] == 'O'):
-                print("Player 2 WINS")
-                return True
-    return False
-
-def checkVertical(board):
-    for col in range(9):
-        for row in range(4):
-            if (board[row][col] == board[row + 1][col] == board[row + 2][col] == board[row + 3][col] and board[row][col] == 'X'):
-                print("Player 1 WINS")
-                return True
-            if (board[row][col] == board[row + 1][col] == board[row + 2][col] == board[row + 3][col] and board[row][col] == 'O'):
-                print("Player 2 WINS")
-                return True
-    return False
-
-def checkDiagonal(board):
-    for row in range(4):
-        for col in range(6):
-            if (board[row][col] == board[row + 1][col + 1] == board[row + 2][col + 2] == board[row + 3][col + 3] != digit):
-                if token == 'X':
-                    print("Player 1 WINS")
-                    return True
-                elif token == 'O':
-                    print("Player 2 WINS")
-                    return True
-    return False
-
-def checkDiagonal(board):
-    for row in range(4):
-        for col in range(6):
-            if (board[row][col] == board[row + 1][col + 1] == board[row + 2][col + 2] == board[row + 3][col + 3] != digit):
-                if token == 'X':
-                    print("Player 1 WINS")
-                    return True
-                elif token == 'O':
-                    print("Player 2 WINS")
-                    return True
-    return False
-
 while True:
-    digit = '-'
-
     token = 'X'
     if player % 2 == 0:
         token = 'O'
 
     if player % 2 == 0:
+        choice2 = str((input("Choose your row P2: ")))
         choice = (input("Choose your column P2: "))
     elif player % 2 != 0:
+        choice2 = str((input("Choose your row P1: ")))
         choice = (input("Choose your column P1: "))
         
     choice = int(choice)
     choice -= 1
 
-    
+    if choice2 == "A":
+        rowline = 0
+    elif choice2 == "B":
+        rowline = 1
+    elif choice2 == "C":
+        rowline = 2
 
-    for i in range(6, -1, -1):
-        if board[i][choice] == digit:
-            board[i][choice] = token
+    for i in range(2, -1, -1):
+        if board[rowline][choice] != token:
+            board[rowline][choice] = token
             player += 1
             break
 
-    
     displayBoard()
-    if (checkHorizontal(board) or checkVertical(board) or checkDiagonal(board)):
-        break
-
+    checkHorizontal()
+    checkVertical()
 
 
 
