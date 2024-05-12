@@ -93,6 +93,7 @@ while True:
     displayBoard()
     checkHorizontal()
     checkVertical()
+    checkDiagonal
 
 
 
